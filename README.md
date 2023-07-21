@@ -17,7 +17,7 @@ pip install .
 ```
 
 ## Usage
-```
+```python
 import gym
 
 env = gym.make("SimpleWalk-5-States")
