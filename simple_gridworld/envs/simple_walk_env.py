@@ -38,7 +38,7 @@ class SimpleWalkEnv(gym.Env):
     def get_next_state(self, state: int, action: int, direction: int = 0) -> int:
         next_state = state + direction if (action == self.RIGHT) else state - direction
 
-        return np.clip(self, next_state, self.first_state, self.last_state)
+        return np.clip(next_state, self.first_state, self.last_state)
 
     def get_reward(self, state: int) -> float:
         return -1.0 if (state == self.first_state) else 1.0 if (state == self.last_state) else 0.0
@@ -50,7 +50,7 @@ class SimpleWalkEnv(gym.Env):
         possible_transitions = self.P[self.current_state][action]
 
         probability_index = 0
-        resulting_action = [transition[probability_index] for transition in possible_transitions]
+        resulting_action = categorical_sample([transition[probability_index] for transition in possible_transitions], np.random)
 
         proability, state, reward, is_done = possible_transitions[resulting_action]
 
