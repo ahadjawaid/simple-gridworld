@@ -57,7 +57,7 @@ class SimpleWalkEnv(gym.Env):
         self.current_state = state
         self.previous_action = action
 
-        return (int(state), reward, is_done, {"prob": proability})
+        return (int(state), reward, is_done, {"prob": proability}, {})
 
     def reset(self):
         self.previous_action = None
